@@ -27,7 +27,7 @@ class PizzahutIndonesia:
             WRITE OUTLETS DATA INTO CSV FILE.
         """
         with open(self.csvfile_name, mode, newline='') as csvfile:
-            locwriter = csv.writer(csvfile, delimiter='\t', quoting=csv.QUOTE_MINIMAL)
+            locwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_ALL)
             for loc in outlet_details_list:
                 locwriter.writerow(loc)
 
