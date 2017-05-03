@@ -26,8 +26,14 @@ class PizzahutIndonesia:
         """
             WRITE OUTLETS DATA INTO CSV FILE.
         """
+
+        headers = ["OutletID", "OutletName", "Description", "OpeningHours", "Location", 
+                "ImageSource", "Latitude", "Longitude", "ContactNumber"]        
+
         with open(self.csvfile_name, mode, newline='') as csvfile:
             locwriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_ALL)
+            if mode=='w':
+                locwriter.writerow(headers) 
             for loc in outlet_details_list:
                 locwriter.writerow(loc)
 
@@ -48,7 +54,8 @@ class PizzahutIndonesia:
         response_data = eval(response_data)
 
         outlets = response_data["data"]["outlet"]["items"]
-        
+
+
         for outlet in outlets:
             outlets_list.append([outlet["OutletID"], outlet["OutletName"], outlet["Description"],
                     outlet["OpeningHours"], outlet["Location"], outlet["ImageSource"], outlet["Lat"], 
